@@ -1,10 +1,28 @@
 import { FaFacebook,FaLinkedin,FaGoogle } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import  { AuthContext } from '../../Providers/AuthProvider';
 
 const Login = () => {
+  const {signIn} =AuthContext(AuthContext)
     const handelLogIn =event=>{
         event.preventDefault()
+        const form = event.target
+        const email=form.email.value
+        const password=form.password.value
+        const user={email,password}
+        console.log(user)
+
+        signIn(email,password)
+        .then(result =>{
+          const user=result.user
+          console.log(user)
+        })
+        .catch(error=>{
+          console.log(error)
+        })
     }
+
+    
 
 
 
@@ -12,7 +30,7 @@ const Login = () => {
         <div className="hero min-h-screen bg-red-400 rounded-2xl">
   <div className="hero-content flex-col lg:flex-row">
     <img src="https://i.ibb.co/CQMT47C/360-F-460710131-Yk-D6-Nsivdy-Ys-Hup-Nv-O3-Y8-MPEwx-TAh-ORh-removebg-preview.png" alt=""  className="text-black lg:w-3/6 mr-9"/>
-    <div className="card w-1/2 flex-shrink-0 w-full max-w-sm shadow-2xl  bg-green-100">
+    <div className="card lg:w-1/2 flex-shrink-0 max-w-sm shadow-2xl  bg-green-100">
       <form onSubmit={handelLogIn} className="card-body space-y-6">
         <h2 className="text-center font-bold ">Login</h2>
         <div className="form-control">

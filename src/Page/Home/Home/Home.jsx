@@ -1,6 +1,7 @@
 import About from "../About/About";
 import Banner from "../Banner/Banner";
 import Services from "../Service/Services";
+import Teams from "../Teams/Teams";
 
 
 const Home = () => {
@@ -11,7 +12,7 @@ const Home = () => {
             <div >
             <Services></Services>
             </div>
-           
+           <Teams></Teams>
         </div>
     );
 };
