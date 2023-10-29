@@ -1,9 +1,15 @@
 import { FaFacebook,FaLinkedin,FaGoogle } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import  { AuthContext } from '../../Providers/AuthProvider';
+import { useContext } from 'react';
+import axios from 'axios';
 
 const Login = () => {
-  const {signIn} =AuthContext(AuthContext)
+ 
+  const {signIn} =useContext(AuthContext)
+  const location =useLocation()
+  console.log(location);
+  const navigate=useNavigate()
     const handelLogIn =event=>{
         event.preventDefault()
         const form = event.target
@@ -14,8 +20,15 @@ const Login = () => {
 
         signIn(email,password)
         .then(result =>{
-          const user=result.user
-          console.log(user)
+          const loggedInUser=result.user
+          const user={email}
+          // navigate(location?.state ? location.state:'/')
+          axios.post('http://localhost:5000/jwt',user)
+          .then(res=>{
+            console.log(res.data)
+          })
+
+          console.log(loggedInUser)
         })
         .catch(error=>{
           console.log(error)
