@@ -1,12 +1,14 @@
 import { FaFacebook,FaLinkedin,FaGoogle } from 'react-icons/fa';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import  { AuthContext } from '../../Providers/AuthProvider';
-import { useContext } from 'react';
+// import  { AuthContext } from '../../Providers/AuthProvider';
+// import { useContext } from 'react';
 import axios from 'axios';
+import useAuth from '../../Hookes/useNumber';
 
 const Login = () => {
  
-  const {signIn} =useContext(AuthContext)
+  const {signIn} =useAuth()
+  // const {signIn} =useContext(AuthContext)
   const location =useLocation()
   console.log(location);
   const navigate=useNavigate()
@@ -23,7 +25,7 @@ const Login = () => {
           const loggedInUser=result.user
           const user={email}
          
-          axios.post('http://localhost:5000/jwt',user,{withCredentials:true})
+          axios.post('https://car-doctor-server-six-sooty.vercel.app/jwt',user,{withCredentials:true})
           .then(res=>{
             console.log(res.data)
             if(res.data.success){

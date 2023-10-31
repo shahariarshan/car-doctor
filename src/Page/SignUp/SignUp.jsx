@@ -1,11 +1,13 @@
-import { useContext } from "react";
+// import { useContext } from "react";
 import { Link } from "react-router-dom";
-import  { AuthContext } from "../../Providers/AuthProvider";
+import useAuth from "../../Hookes/useNumber";
+// import  { AuthContext } from "../../Providers/AuthProvider";
 
 
 const SignUp = () => {
   
-       const {createUser} =useContext(AuthContext)
+       const {createUser} =useAuth()
+      //  const {createUser} =useContext(AuthContext)
         
           const handelSignIn =event=>{
                 event.preventDefault()
